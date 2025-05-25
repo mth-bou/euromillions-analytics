@@ -32,7 +32,7 @@ full_combinations = [
 full_counter = Counter(full_combinations)
 top_full = get_top_combinations(full_counter)
 
-# --- AFFICHAGE CONSOLE ---
+# --- Display console ---
 print("Top 10 combinaisons NUMÉROS avec occurrences > 1 :")
 for item in top_numbers:
     print(f"{item['combination']} → {item['occurences']} fois")
