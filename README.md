@@ -1,4 +1,4 @@
-# 🎲 EuroMillions Data Analyzer
+# 🎲 EuroMillions Data Analytics
 
 A simple Python project to explore, analyze and visualize the historical results of the EuroMillions game.
 
@@ -21,8 +21,8 @@ This project allows you to :
 ### 1. Clone the project
 
 ```bash
-git clone https://github.com/votre-utilisateur/euromillions-analyzer.git
-cd euromillions-analyzer
+git clone https://github.com/mth-bou/euromillions-analytics.git
+cd euromillions-analytics
 ```
 ### 2. Create a virtual env
 
