@@ -6,14 +6,21 @@ from plotly.subplots import make_subplots
 
 df = pd.read_csv('euromillions.csv', sep=";")
 
+cols_num = ['N1', 'N2', 'N3', 'N4', 'N5']
+cols_star = ['E1', 'E2']
+
+# Convert columns to numeric and drop rows with NaN values
+df[cols_num + cols_star] = df[cols_num + cols_star].apply(pd.to_numeric, errors='coerce')
+df.dropna(subset=cols_num + cols_star, inplace=True)
+
 # init empty matrix
 # --- NUMBERS (N1 to N5) ---
 max_num = 50
 co_matrix = np.zeros((max_num, max_num), dtype=int)
 
 # Browse each print run
-for _, row in df[['N1', 'N2', 'N3', 'N4', 'N5']].iterrows():
-    nums = [row['N1'], row['N2'], row['N3'], row['N4'], row['N5']]
+for _, row in df[cols_num].iterrows():
+    nums = [int(row[c]) for c in cols_num]
     for a, b in combinations(nums, 2):
         co_matrix[a-1, b-1] += 1
         co_matrix[b-1, a-1] += 1 # symetric matrix
@@ -25,8 +32,8 @@ hover_text_num = [[f"Numéros : {i+1} & {j+1}<br>Co-occurrences : {co_matrix[i][
 max_star = 12
 star_matrix = np.zeros((max_star, max_star), dtype=int)
 
-for _, row in df[['E1', 'E2']].iterrows():
-    e1, e2 = row['E1'], row['E2']
+for _, row in df[cols_star].iterrows():
+    e1, e2 = int(row['E1']), int(row['E2'])
     star_matrix[e1-1, e2-1] += 1
     star_matrix[e2-1, e1-1] += 1
 
